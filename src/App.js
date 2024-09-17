@@ -5,7 +5,7 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null)); //initialisation du tableau
 
   function handleClick(val) {
-    let newTab = squares.slice(); //copie du tableau
+    let newTab = squares.slice(); //copie du tableau (Approche par immutabilité)
     newTab[val] = "X"; //Mise à jour de la valeur de l'indice donnée
     setSquares(newTab); //on met à jour le tableau
   }
@@ -13,27 +13,27 @@ export default function Board() {
   return (
     <>
       <div className="board-row">
-        <Square square={squares[0]} handleClick={() => handleClick(0)}></Square>
-        <Square square={squares[1]} handleClick={() => handleClick(1)}></Square>
-        <Square square={squares[2]} handleClick={() => handleClick(2)}></Square>
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
       </div>
       <div className="board-row">
-        <Square square={squares[3]} handleClick={() => handleClick(3)}></Square>
-        <Square square={squares[4]} handleClick={() => handleClick(4)}></Square>
-        <Square square={squares[5]} handleClick={() => handleClick(5)}></Square>
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
       </div>
       <div className="board-row">
-        <Square square={squares[6]} handleClick={() => handleClick(6)}></Square>
-        <Square square={squares[7]} handleClick={() => handleClick(7)}></Square>
-        <Square square={squares[8]} handleClick={() => handleClick(8)}></Square>
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
   );
 }
 
-function Square({ square, handleClick }) {
+function Square({ square, onSquareClick }) {
   return (
-    <button className="square" onClick={handleClick}>
+    <button className="square" onClick={onSquareClick}>
       {square}
     </button>
   );
